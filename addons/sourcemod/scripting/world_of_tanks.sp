@@ -90,7 +90,7 @@ int g_iLaser;
 
 #define PLAYERANIMEVENT_ATTACK_PRIMARY	0
 
-#define DMG_USEDISTANCEMOD	DMG_SLOWBURN
+//#define DMG_USEDISTANCEMOD	DMG_SLOWBURN
 #define HIDEHUD_CROSSHAIR	( 1<<8 )
 #define EF_NODRAW			32
 
@@ -1983,6 +1983,11 @@ stock void SetUltimateReadyState(int client)
 
 		EmitSoundToAll(SFX_ULTIMATE, client, SNDCHAN_AUTO, SNDLEVEL_SCREAMING, SND_CHANGEVOL, SNDVOL_HALF, SNDPITCH_NORMAL, -1, NULL_VECTOR, NULL_VECTOR, true, 0.0);
 	}
+}
+
+stock int GetWeaponAnimOwner(int client)
+{
+	return GetEntProp(GetEntPropEnt(client, Prop_Send, "m_hActiveWeapon"), Prop_Send, "m_hOwnerEntity");
 }
 
 public Action Timer_PlayerBeepSound(Handle timer, any client)
